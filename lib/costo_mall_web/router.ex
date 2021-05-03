@@ -20,9 +20,10 @@ defmodule CostoMallWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CostoMallWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", CostoMallWeb do
+    pipe_through :api
+    resources "/carts", CartController
+  end
 
   # Enables LiveDashboard only for development
   #
