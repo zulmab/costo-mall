@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+    psql:
+        image: postgres
+        restart: unless-stopped
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        environment:        
+            POSTGRES_USER: homestead
+            POSTGRES_PASSWORD: secret
+
+    pgadmin:
+        depends_on:
+            - psql
+        image: dpage/pgadmin4
+        restart: unless-stopped
+        environment:
+            PGADMIN_DEFAULT_PASSWORD: secret
+            PGADMIN_DEFAULT_EMAIL: user@email.com
+        ports:
+            - 8080:80
+
+volumes:
+    db-data:
