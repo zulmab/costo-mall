@@ -2,9 +2,9 @@ use Mix.Config
 
 # Configure your database
 config :costo_mall, CostoMall.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "costo_mall_dev",
+  username: "homestead",
+  password: "secret",
+  database: "homestead",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

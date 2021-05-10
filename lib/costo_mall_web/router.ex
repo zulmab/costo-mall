@@ -22,6 +22,9 @@ defmodule CostoMallWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", CostoMallWeb do
     pipe_through :api
+    get "/carts/count", CartController, :filtercountergreater
+    get "/carts/total", CartController, :filtertotalgreater
+    get "/carts/count-and-total", CartController, :filtercountytotalgreater
     resources "/carts", CartController
   end
 

@@ -11,6 +11,21 @@ defmodule CostoMallWeb.CartController do
     render(conn, "index.json", carts: carts)
   end
 
+  def filtercountergreater(conn, %{"gt" => gt}) do
+    carts = Mall.get_carts_count_greater_than(String.to_integer(gt))
+    render(conn, "index.json", carts: carts)
+  end
+
+  def filtertotalgreater(conn, %{"gt" => gt}) do
+    carts = Mall.get_carts_total_greater_than(String.to_integer(gt))
+    render(conn, "index.json", carts: carts)
+  end
+
+  def filtercountytotalgreater(conn, %{"gt" => gt}) do
+    carts = Mall.get_carts_counttotal_greater_than(String.to_integer(gt))
+    render(conn, "index.json", carts: carts)
+  end
+
   def create(conn, %{"cart" => cart_params}) do
     with {:ok, %Cart{} = cart} <- Mall.create_cart(cart_params) do
       conn

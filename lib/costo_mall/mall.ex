@@ -38,6 +38,72 @@ defmodule CostoMall.Mall do
   def get_cart!(id), do: Repo.get!(Cart, id)
 
   @doc """
+  Returns the list of carts with count greater than given number
+  Raises `Ecto.NoResultsError` if the Cart does not exist.
+
+  ## Examples
+
+      iex> get_carts_count_greater_than!(123)
+      %Cart{}
+
+      iex> get_carts_count_greater_than!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_carts_count_greater_than(num) do
+    query =
+      from c in Cart,
+        where: c.count > ^num,
+        select: c
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Returns the list of carts with total greater than given number
+  Raises `Ecto.NoResultsError` if the Cart does not exist.
+
+  ## Examples
+
+      iex> get_carts_total_greater_than!(123)
+      %Cart{}
+
+      iex> get_carts_total_greater_than!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_carts_total_greater_than(num) do
+    query =
+      from c in Cart,
+        where: c.total > ^num,
+        select: c
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Returns the list of carts with count y total greater than given number
+  Raises `Ecto.NoResultsError` if the Cart does not exist.
+
+  ## Examples
+
+      iex> get_carts_counttotal_greater_than!(123)
+      %Cart{}
+
+      iex> get_carts_counttotal_greater_than!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_carts_counttotal_greater_than(num) do
+    query =
+      from c in Cart,
+        where: c.total > ^num and c.count > ^num,
+        select: c
+
+    Repo.all(query)
+  end
+
+  @doc """
   Creates a cart.
 
   ## Examples
